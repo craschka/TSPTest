@@ -29,7 +29,13 @@ namespace TSPTest
             if (entry.IsNewerThan(oldEntry))
             {
                 oldEntry = entry;
-                notification(entry.ToString());
+                string tendenz;
+                var old = float.Parse(oldEntry.Price());
+                var neu = float.Parse(entry.Price());
+                if (old < neu) { tendenz = " + "; }
+                else if (neu < old) { tendenz = " - "; }
+                else { tendenz = " = "; }
+                notification(entry + tendenz);
                 entryAuditor.WriteEntry(entry);
             }
         }

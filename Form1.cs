@@ -17,6 +17,8 @@ namespace TSPTest
             InitializeComponent();
             moersController.NotificateIfNew(Notification());
             duesseldorfController.NotificateIfNew(NotificationDDorf());
+            timer1.Start();
+            timer2.Start();
         }
 
         private Action<string> Notification()

@@ -16,7 +16,11 @@ namespace TSPTest
 
         public void WriteEntry(TankstellenEntry entry)
         {
-            System.IO.File.AppendAllText(filename, System.Environment.NewLine+entry.ToString());
+            var s = new StringBuilder();
+            s.Append(entry.Date()).Append(";")
+                .Append(entry.Name()).Append(";")
+                .Append(entry.Price()).AppendLine();
+            System.IO.File.AppendAllText(filename, s.ToString());
         }
     }
 }
