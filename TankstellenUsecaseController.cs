@@ -28,8 +28,11 @@ namespace TSPTest
             TankstellenEntry entry = htmlParser.parse(downloader.download(downloadUrl)).First(x => x.IsPmOrStar());
             if (entry.IsNewerThan(oldEntry))
             {
-                oldEntry = entry;
                 string tendenz;
+                if (oldEntry == null)
+                {
+                    oldEntry = entry;
+                }
                 var old = float.Parse(oldEntry.Price());
                 var neu = float.Parse(entry.Price());
                 if (old < neu) { tendenz = " + "; }
@@ -37,6 +40,7 @@ namespace TSPTest
                 else { tendenz = " = "; }
                 notification(entry + tendenz);
                 entryAuditor.WriteEntry(entry);
+                oldEntry = entry;
             }
         }
     }
